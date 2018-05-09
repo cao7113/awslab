@@ -1,24 +1,16 @@
 variable "region" {
-  description = "My preferred region"
+  description = "Your favoriate region"
   default = "ap-northeast-2"
 }
 variable "base_image" {
   description = "Base image for ec2 instance"
-  #default =  "ami-16c06c78"  #ubuntu with docker
-  #ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20171026.1 (ami-7b1cb915)
-  #描述 Canonical, Ubuntu, 16.04 LTS, amd64 xenial image build on 2017-10-26
-  #default = "ami-7b1cb915"  # has problem???
-  #default = "ami-e307ae8d"
-  #default = "ami-69f85807" # python2 included, price
 
-  #选择 64 位
   #ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20180306 - ami-a414b9ca
   #Canonical, Ubuntu, 16.04 LTS, amd64 xenial image build on 2018-03-06
   #根设备类型: ebs 虚拟化类型: hvm
   #default = "ami-a414b9ca"
 
-  default = "ami-0f06af61" # my base
-  default = "ami-fc06af92" # my docker preinstall base
+  default = "ami-c618b1a8" # docker-ce included ubuntu16.04
 }
 
 provider "aws" {
@@ -72,7 +64,7 @@ resource "aws_instance" "labaws" {
 
   user_data = <<-EOF
     #!/bin/bash
-    echo "Hello aws with terraform!"
+    echo "Hello AWS with Terraform!"
     EOF
 
   provisioner "local-exec" {
